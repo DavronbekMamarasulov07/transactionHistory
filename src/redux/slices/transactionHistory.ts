@@ -39,9 +39,16 @@ const transactionSlice = createSlice({
                     localStorage.setItem("expense-history", JSON.stringify(state.transactionHistory.expense))
                 break;
             }
+        },
+        removeTransaction: (state, action: PayloadAction<ITransaction>) => {
+            state.transactionHistory.expense = state.transactionHistory.expense.filter(item => item.id !== action.payload.id)
+            state.transactionHistory.income = state.transactionHistory.income.filter(item => item.id !== action.payload.id)
+            // state.totalAmount -= action.payload.amount
+            localStorage.setItem("expense-history", JSON.stringify(state.transactionHistory.expense))
+            localStorage.setItem("income-history", JSON.stringify(state.transactionHistory.income))
         }
     }
 })
 
-export const {createTransaction} = transactionSlice.actions;
+export const {createTransaction , removeTransaction} = transactionSlice.actions;
 export default transactionSlice.reducer

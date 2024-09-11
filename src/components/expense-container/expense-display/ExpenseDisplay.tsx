@@ -43,7 +43,9 @@ const ExpenseDisplay = () => {
   return (
     <div>
       <Doughnut data={data}  />
-      <Title className="text-center mt-8" level={3}>{currencyFormatter.format(totalAmount, { code: 'UZS' }).replace("сўм", "UZS")}</Title>
+      {
+        totalAmount > 0 && <Title className="mt-8" level={3}>Total Amount: {currencyFormatter.format(totalAmount, { code: 'USD' })}</Title>
+      }
     </div>
   )
 }

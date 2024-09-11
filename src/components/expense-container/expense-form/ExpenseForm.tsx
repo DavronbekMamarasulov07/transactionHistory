@@ -35,7 +35,8 @@ const ExpenseForm: React.FC = () => {
   const [actionType, setActionType] = React.useState<'income' | 'expense'>('income');
 
   const onFinish: FormProps<FieldType>['onFinish'] = (values) => {
-    const transaction = values as ITransaction
+    const id =  Math.floor(Math.random() * 100000)
+    const transaction = {...values, id: id} as ITransaction
     dispatch(createTransaction(transaction))
     message.success('Transaction created successfully')
     form.resetFields();
